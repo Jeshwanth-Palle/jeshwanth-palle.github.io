@@ -148,47 +148,111 @@
             </div>
 
             <!-- Profile Photo Container -->
-            <div class="flex flex-col items-center gap-2 flex-shrink-0">
+            <div class="flex flex-col items-center gap-2.5 flex-shrink-0">
               <div class="relative group">
-                <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-sky-500 via-indigo-500 to-emerald-400 opacity-70 blur group-hover:opacity-100 transition duration-300"></div>
-                <div class="relative w-32 h-36 rounded-2xl overflow-hidden bg-dark-900 border-2 border-dark-700 shadow-2xl flex items-center justify-center">
+                <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-sky-500 via-indigo-500 to-emerald-400 opacity-75 blur-md group-hover:opacity-100 transition duration-300"></div>
+                <div class="relative w-36 h-44 rounded-2xl overflow-hidden bg-dark-900 border-2 border-dark-700 shadow-2xl flex items-center justify-center">
                   
-                  <!-- Main Image (defaults to jesh.jpg, with sandbox fallback) -->
+                  <!-- Main Image (attempts jesh_2.jpg, then jesh.jpg, then rendered portrait) -->
                   <img 
                     id="profileImg"
-                    src="jesh.jpg" 
+                    src="jesh_2.jpg" 
                     alt="Jeshwanth Palle" 
-                    class="w-full h-full object-cover object-top"
+                    class="w-full h-full object-cover object-top transition-opacity duration-300"
                     onload="handlePhotoLoaded()"
-                    onerror="handlePhotoError()"
+                    onerror="handlePhotoFallback(this)"
                   />
 
-                  <!-- Fallback Illustrated Avatar (shown if local file not yet chosen in iframe) -->
-                  <div id="avatarFallback" class="hidden w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-slate-900 to-dark-850 p-2 text-center">
-                    <div class="w-16 h-16 rounded-full bg-sky-500/20 border border-sky-400/40 flex items-center justify-center text-sky-300 mb-1">
-                      <i class="ph-bold ph-user text-3xl"></i>
-                    </div>
-                    <span class="text-xs font-mono font-bold text-white">Jeshwanth</span>
-                    <span class="text-[10px] font-mono text-slate-400">Click below to preview</span>
+                  <!-- High-Fidelity SVG Portrait Matching Jeshwanth (shown if local file path is inaccessible in iframe) -->
+                  <div id="vectorPortrait" class="hidden w-full h-full flex items-center justify-center bg-slate-900">
+                    <svg viewBox="0 0 160 200" class="w-full h-full object-cover" xmlns="http://www.w3.org/2000/svg">
+                      <defs>
+                        <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" stop-color="#cbd5e1"/>
+                          <stop offset="50%" stop-color="#94a3b8"/>
+                          <stop offset="100%" stop-color="#64748b"/>
+                        </linearGradient>
+                        <linearGradient id="suitGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                          <stop offset="0%" stop-color="#23272f"/>
+                          <stop offset="100%" stop-color="#0f172a"/>
+                        </linearGradient>
+                        <linearGradient id="skinGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                          <stop offset="0%" stop-color="#d49b72"/>
+                          <stop offset="100%" stop-color="#b87850"/>
+                        </linearGradient>
+                      </defs>
+                      <!-- Blurred Office Background -->
+                      <rect width="160" height="200" fill="url(#bgGrad)"/>
+                      <circle cx="130" cy="35" r="14" fill="#fef08a" opacity="0.45" filter="blur(2px)"/>
+                      <rect x="10" y="70" width="35" height="120" rx="10" fill="#4ade80" opacity="0.3" filter="blur(3px)"/>
+                      <line x1="120" y1="0" x2="120" y2="100" stroke="#475569" stroke-width="6" opacity="0.35"/>
+
+                      <!-- Dark Suit Blazer -->
+                      <path d="M10 200 L30 135 L55 125 L80 155 L105 125 L130 135 L150 200 Z" fill="url(#suitGrad)"/>
+                      <!-- Blazer Lapels -->
+                      <path d="M30 135 L58 175 L80 185 L65 130 Z" fill="#1e222a"/>
+                      <path d="M130 135 L102 175 L80 185 L95 130 Z" fill="#1e222a"/>
+
+                      <!-- Crisp White Shirt & V-Neck Opening -->
+                      <polygon points="62,128 80,175 98,128 80,140" fill="#ffffff"/>
+                      <polygon points="56,126 72,136 68,144 52,130" fill="#f1f5f9"/>
+                      <polygon points="104,126 88,136 92,144 108,130" fill="#f1f5f9"/>
+
+                      <!-- Neck & Chest -->
+                      <path d="M68 105 L68 140 Q80 148 92 140 L92 105 Z" fill="url(#skinGrad)"/>
+
+                      <!-- Face Oval -->
+                      <ellipse cx="80" cy="80" rx="36" ry="42" fill="url(#skinGrad)"/>
+
+                      <!-- Hair -->
+                      <path d="M42 68 Q40 38 80 34 Q120 38 118 68 Q118 50 80 46 Q46 50 42 68 Z" fill="#18181b"/>
+                      <path d="M45 52 Q60 40 85 40 Q108 42 115 54 Q95 46 72 48 Q55 52 45 52 Z" fill="#09090b"/>
+
+                      <!-- Ears -->
+                      <ellipse cx="44" cy="84" rx="5" ry="9" fill="#b87850"/>
+                      <ellipse cx="116" cy="84" rx="5" ry="9" fill="#b87850"/>
+
+                      <!-- Eyebrows -->
+                      <path d="M54 66 Q65 63 73 66" stroke="#18181b" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+                      <path d="M87 66 Q95 63 106 66" stroke="#18181b" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+
+                      <!-- Eyes -->
+                      <ellipse cx="64" cy="74" rx="6" ry="4.5" fill="#ffffff"/>
+                      <circle cx="64" cy="74" r="3.4" fill="#1e1b18"/>
+                      <circle cx="65.5" cy="72.5" r="1.1" fill="#ffffff"/>
+
+                      <ellipse cx="96" cy="74" rx="6" ry="4.5" fill="#ffffff"/>
+                      <circle cx="96" cy="74" r="3.4" fill="#1e1b18"/>
+                      <circle cx="97.5" cy="72.5" r="1.1" fill="#ffffff"/>
+
+                      <!-- Nose -->
+                      <path d="M78 72 L77 88 Q80 91 83 88" stroke="#995834" stroke-width="2" stroke-linecap="round" fill="none"/>
+
+                      <!-- Full Beard & Mustache -->
+                      <path d="M48 85 Q52 118 80 122 Q108 118 112 85 Q110 110 80 116 Q50 110 48 85 Z" fill="#18181b" opacity="0.9"/>
+                      <!-- Mustache -->
+                      <path d="M64 96 Q80 92 96 96 Q80 102 64 96 Z" fill="#18181b"/>
+
+                      <!-- Lips / Smile -->
+                      <path d="M68 102 Q80 107 92 102" stroke="#be5d5d" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                    </svg>
                   </div>
 
                 </div>
               </div>
 
-              <!-- Interactive Photo Preview Switcher (For local sandbox testing) -->
-              <div class="flex flex-col items-center">
-                <label for="photoUploadInput" class="cursor-pointer inline-flex items-center gap-1.5 text-[11px] font-mono px-2.5 py-1 rounded-lg bg-dark-850 hover:bg-dark-800 text-sky-400 border border-dark-700 hover:border-sky-500/50 transition-all shadow-sm">
-                  <i class="ph-bold ph-camera"></i>
-                  <span>Preview jesh.jpg</span>
-                </label>
-                <input 
-                  type="file" 
-                  id="photoUploadInput" 
-                  accept="image/*" 
-                  class="hidden" 
-                  onchange="previewUploadedPhoto(event)"
-                />
-              </div>
+              <!-- Quick Local Photo Selector (Optional Preview In Sandbox) -->
+              <label for="photoUploadInput" class="cursor-pointer inline-flex items-center gap-1.5 text-[11px] font-mono px-2.5 py-1 rounded-lg bg-dark-850 hover:bg-dark-800 text-sky-400 border border-dark-700 hover:border-sky-500/50 transition-all shadow-sm">
+                <i class="ph-bold ph-arrows-clockwise"></i>
+                <span>Switch / Reload jesh.jpg</span>
+              </label>
+              <input 
+                type="file" 
+                id="photoUploadInput" 
+                accept="image/*" 
+                class="hidden" 
+                onchange="previewUploadedPhoto(event)"
+              />
             </div>
           </div>
 
@@ -729,19 +793,22 @@
     // Handle photo load success/fail states
     function handlePhotoLoaded() {
       const img = document.getElementById('profileImg');
-      const fallback = document.getElementById('avatarFallback');
+      const fallback = document.getElementById('vectorPortrait');
       if (img && fallback) {
         img.classList.remove('hidden');
         fallback.classList.add('hidden');
       }
     }
 
-    function handlePhotoError() {
-      const img = document.getElementById('profileImg');
-      const fallback = document.getElementById('avatarFallback');
-      if (img && fallback) {
-        img.classList.add('hidden');
-        fallback.classList.remove('hidden');
+    function handlePhotoFallback(imgElement) {
+      if (imgElement.src.includes('jesh_2.jpg')) {
+        // Try alternate filename
+        imgElement.src = 'jesh.jpg';
+      } else {
+        // Show styled realistic vector portrait in sandbox
+        imgElement.classList.add('hidden');
+        const fallback = document.getElementById('vectorPortrait');
+        if (fallback) fallback.classList.remove('hidden');
       }
     }
 
@@ -753,7 +820,7 @@
       const reader = new FileReader();
       reader.onload = function(e) {
         const img = document.getElementById('profileImg');
-        const fallback = document.getElementById('avatarFallback');
+        const fallback = document.getElementById('vectorPortrait');
         if (img) {
           img.src = e.target.result;
           img.classList.remove('hidden');
@@ -791,6 +858,7 @@
 
     // Generate simulated commit matrix
     window.addEventListener('DOMContentLoaded', () => {
+      initProfilePhoto();
       const container = document.getElementById('miniHeatmap');
       if (!container) return;
       const shades = [
