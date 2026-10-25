@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jeshwanth Palle | Senior Front-End & Angular Architect</title>
+  
+  <!-- Fonts & Tailwind CSS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Phosphor Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['"Fira Code"', 'monospace'],
+          },
+          colors: {
+            brand: {
+              red: '#e0234e',
+              accent: '#38bdf8',
+              emerald: '#10b981',
+            },
+            dark: {
+              950: '#070a11',
+              900: '#0d1117',
+              850: '#161b22',
+              800: '#21262d',
+              700: '#30363d',
+              600: '#484f58'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #070a11;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #21262d;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #30363d;
+    }
+
+    .github-card {
+      background: #0d1117;
+      border: 1px solid #30363d;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .github-card:hover {
+      border-color: #58a6ff;
+      transform: translateY(-2px);
+    }
+    .glow-effect {
+      box-shadow: 0 0 40px -10px rgba(56, 189, 248, 0.15);
+    }
+  </style>
+</head>
+<body class="bg-dark-950 text-slate-300 font-sans antialiased selection:bg-sky-500 selection:text-white min-h-screen flex flex-col justify-between">
+
+  <!-- Toast Alert for Copy Actions -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-28 opacity-0 transition-all duration-300 flex items-center gap-3 bg-dark-900 border border-emerald-500/60 text-emerald-300 px-5 py-3 rounded-xl shadow-2xl shadow-emerald-950/50">
+    <i class="ph-bold ph-check-circle text-xl text-emerald-400"></i>
+    <span id="toast-message" class="text-sm font-medium">Copied!</span>
+  </div>
+
+  <!-- Navigation Bar -->
+  <header class="sticky top-0 z-40 bg-dark-950/85 backdrop-blur-md border-b border-dark-700">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-9 h-9 rounded-lg bg-gradient-to-tr from-brand-red to-sky-500 flex items-center justify-center text-white font-mono font-bold text-sm shadow group-hover:scale-105 transition-transform">
+          JP
+        </div>
+        <div class="flex flex-col">
+          <span class="font-mono text-sm font-semibold text-slate-100 group-hover:text-brand-accent transition-colors">
+            jeshwanth-palle
+          </span>
+          <span class="text-[11px] font-mono text-slate-500">portfolio.angular.dev</span>
+        </div>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-400">
+        <a href="#about" class="hover:text-sky-400 transition-colors">About</a>
+        <a href="#skills" class="hover:text-sky-400 transition-colors">Stack</a>
+        <a href="#experience" class="hover:text-sky-400 transition-colors">Experience</a>
+        <a href="#awards" class="hover:text-sky-400 transition-colors">Awards</a>
+        <a href="#deploy" class="text-amber-400 hover:text-amber-300 transition-colors flex items-center gap-1.5">
+          <i class="ph-bold ph-globe"></i> Live URL Guide
+        </a>
+      </nav>
+
+      <!-- Action Button -->
+      <div class="flex items-center gap-2.5">
+        <a href="https://linkedin.com/in/jeshwanth-palle-16ab57126/" target="_blank" rel="noopener noreferrer" 
+           class="inline-flex items-center gap-2 text-xs font-semibold px-3.5 py-2 rounded-lg bg-dark-850 hover:bg-dark-800 text-sky-400 border border-dark-700 transition-all">
+          <i class="ph-bold ph-linkedin-logo text-base"></i>
+          <span class="hidden sm:inline">LinkedIn</span>
+        </a>
+        <a href="#contact" class="inline-flex items-center gap-2 text-xs font-semibold px-4 py-2 rounded-lg bg-gradient-to-r from-sky-500 to-blue-600 text-white hover:brightness-110 shadow-lg shadow-sky-500/20 transition-all">
+          <i class="ph-bold ph-paper-plane-tilt"></i>
+          <span>Contact</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="space-y-16 py-8">
+    
+    <!-- Hero / Profile Section -->
+    <section id="about" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- Main Bio -->
+        <div class="lg:col-span-8 space-y-6">
+          <div class="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-xs font-mono">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            Senior Front-End Lead &bull; Available for Key Roles
+          </div>
+
+          <div>
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight">
+              Jeshwanth Palle
+            </h1>
+            <p class="mt-2 text-xl sm:text-2xl font-mono text-sky-400 flex items-center gap-2 flex-wrap">
+              <span>Senior Front-End / Angular Developer</span>
+              <span class="text-xs px-2.5 py-1 rounded-md bg-dark-850 text-slate-300 border border-dark-700 font-sans">7+ Years Exp</span>
+            </p>
+          </div>
+
+          <p class="text-slate-300 leading-relaxed text-base max-w-3xl">
+            Passionate Front-End specialist with 7 years of deep engineering experience building resilient, enterprise-scale web portals using <strong class="text-white font-semibold">Angular (v4 - v18)</strong>, <strong class="text-white font-semibold">TypeScript</strong>, and <strong class="text-white font-semibold">RxJS</strong>. Adept in architecting modular components, elevating UI/UX standards, and leading cross-functional delivery teams across InsurTech and Cybersecurity.
+          </p>
+
+          <div class="flex flex-wrap items-center gap-3 pt-2">
+            <span class="inline-flex items-center gap-1.5 text-xs font-mono px-3 py-1.5 rounded-lg bg-dark-900 border border-dark-700 text-slate-300">
+              <i class="ph-bold ph-map-pin text-sky-400"></i> Bangalore, India
+            </span>
+            <span class="inline-flex items-center gap-1.5 text-xs font-mono px-3 py-1.5 rounded-lg bg-dark-900 border border-dark-700 text-slate-300">
+              <i class="ph-bold ph-shield-check text-emerald-400"></i> Digit Insurance & Seqrite
+            </span>
+            <span class="inline-flex items-center gap-1.5 text-xs font-mono px-3 py-1.5 rounded-lg bg-dark-900 border border-dark-700 text-slate-300">
+              <i class="ph-bold ph-sparkle text-purple-400"></i> AI-Powered (GitHub Copilot)
+            </span>
+          </div>
+
+          <!-- Quick Action Buttons -->
+          <div class="flex flex-wrap items-center gap-3 pt-4">
+            <button onclick="copyText('jeshwanthk.palle@gmail.com', 'Email copied to clipboard!')" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-dark-950 font-bold text-sm transition-all shadow-lg shadow-sky-500/20">
+              <i class="ph-bold ph-copy"></i>
+              <span>Copy Email</span>
+            </button>
+            <button onclick="copyText('+919700474242', 'Phone number copied to clipboard!')" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-dark-850 border border-dark-700 hover:border-slate-500 text-slate-200 text-sm font-semibold transition-all">
+              <i class="ph-bold ph-phone"></i>
+              <span>+91-9700474242</span>
+            </button>
+            <a href="https://linkedin.com/in/jeshwanth-palle-16ab57126/" target="_blank" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-dark-850 border border-dark-700 hover:border-sky-500/60 text-slate-200 text-sm font-semibold transition-all">
+              <i class="ph-bold ph-arrow-square-out text-sky-400"></i>
+              <span>LinkedIn Profile</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Metrics & Status -->
+        <div class="lg:col-span-4 space-y-4">
+          <div class="github-card rounded-2xl p-6 glow-effect">
+            <div class="flex items-center justify-between pb-3 border-b border-dark-700">
+              <span class="text-xs font-mono text-slate-400">ENGINEER METRICS</span>
+              <span class="flex h-2.5 w-2.5 relative">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+              </span>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 pt-4">
+              <div class="bg-dark-850 p-3.5 rounded-xl border border-dark-700">
+                <div class="text-2xl font-black text-white font-mono">7+</div>
+                <div class="text-[11px] text-slate-400 mt-0.5">Years Frontend</div>
+              </div>
+              <div class="bg-dark-850 p-3.5 rounded-xl border border-dark-700">
+                <div class="text-2xl font-black text-brand-red font-mono">v4-18</div>
+                <div class="text-[11px] text-slate-400 mt-0.5">Angular Span</div>
+              </div>
+              <div class="bg-dark-850 p-3.5 rounded-xl border border-dark-700">
+                <div class="text-2xl font-black text-amber-400 font-mono">3x</div>
+                <div class="text-[11px] text-slate-400 mt-0.5">Titan & Mind Awards</div>
+              </div>
+              <div class="bg-dark-850 p-3.5 rounded-xl border border-dark-700">
+                <div class="text-2xl font-black text-emerald-400 font-mono">100%</div>
+                <div class="text-[11px] text-slate-400 mt-0.5">On-time Delivery</div>
+              </div>
+            </div>
+
+            <!-- Current Company -->
+            <div class="mt-4 p-3.5 rounded-xl bg-dark-850 border border-dark-700 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-lg bg-orange-500/10 border border-orange-500/30 text-orange-400 flex items-center justify-center flex-shrink-0">
+                <i class="ph-bold ph-shield-star text-xl"></i>
+              </div>
+              <div>
+                <div class="text-xs font-semibold text-white">Go Digit General Insurance</div>
+                <div class="text-[11px] font-mono text-emerald-400">Senior Software Developer</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Activity Heatmap Mockup -->
+          <div class="github-card rounded-2xl p-4 border border-dark-700">
+            <div class="flex items-center justify-between text-xs text-slate-400 font-mono mb-2.5">
+              <span>DEVELOPER COMMITS</span>
+              <span class="text-emerald-400">Active</span>
+            </div>
+            <div class="grid grid-cols-12 gap-1.5" id="miniHeatmap"></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Technical Summary & Interactive Filters -->
+    <section id="skills" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4 border-b border-dark-700 pb-5">
+        <div>
+          <span class="text-xs font-mono text-sky-400 uppercase tracking-widest">Architecture & Tools</span>
+          <h2 class="text-3xl font-extrabold text-white mt-1">Technical Stack</h2>
+        </div>
+        <p class="text-sm text-slate-400 max-w-md">
+          Modular, maintainable code architectures backed by rigorous automated code reviews, reactive asynchronous programming, and modern UI primitives.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Category 1 -->
+        <div class="github-card rounded-2xl p-6">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 text-xl">
+              <i class="ph-bold ph-code"></i>
+            </div>
+            <h3 class="font-bold text-white text-base">Languages</h3>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="text-xs font-mono px-3 py-1.5 rounded-lg bg-dark-850 border border-dark-700 text-slate-200">TypeScript</span>
+            <span class="text-xs font-mono px-3 py-1.5 rounded-lg bg-dark-850 border border-dark-700 text-slate-200">JavaScript (ES6+)</span>
+            <span class="text-xs font-mono px-3 py-1.5 rounded-lg bg-dark-850 border border-dark-700 text-slate-200">HTML5</span>
+            <span class="text-xs font-mono px-3 py-1.5 rounded-lg bg-dark-850 border border-dark-700 text-slate-200">CSS3 / SCSS</span>
+          </div>
+        </div>
+
+        <!-- Category 2 -->
+        <div class="github-card rounded-2xl p-6">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-brand-red text-xl">
+              <i class="ph-bold ph-browsers"></i>
+            </div>
+            <h3 class="font-bold text-white text-base">Frameworks & UI</h3>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="text-xs font-mono px-3 py-1.5 rounded-lg bg-brand-red/10 border border-brand-red/30 text-rose-300 font-semibold">Angular (v4 - v18)</span>
+            <span class="text-xs font-mono px-3 py-1.5 rounded-lg bg-dark-850 border border-dark-700 text-slate-200">Angular Material</span>
+            <span class="text-xs font-mono px-3 py-1.5 rounded-lg bg-dark-850 border border-dark-700 text-slate-200">React</span>
+            <span class="text-xs font-mono px-3 py-1.5 rounded-lg bg-dark-850 border border-dark-700 text-slate-200">Material-UI</span>
+            <span class="text-xs font-mono px-3 py-1.5 rounded-lg bg-dark-850 border border-dark-700 text-slate-200">Bootstrap</span>
+          </div>
+        </div>
+
+        <!-- Category 3 -->
+        <div class="github-card rounded-2xl p-6">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 text-xl">
+              <i class="ph-bold ph-git-branch"></i>
+            </div>
+            <h3 class="font-bold text-white text-base">Tools & DevOps</h3>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="text-xs font-mono px-3 py-1.5 rounded-lg bg-purple-500/10 border border-purple-500/30 text-purple-300 font-semibold">GitHub Copilot AI</span>
+            <span class="text-xs font-mono px-3 py-1.5 rounded-lg bg-dark-850 border border-dark-700 text-slate-200">Git / GitHub</span>
+            <span class="text-xs font-mono px-3 py-1.5 rounded-lg bg-dark-850 border border-dark-700 text-slate-200">Bitbucket</span>
+            <span class="text-xs font-mono px-3 py-1.5 rounded-lg bg-dark-850 border border-dark-700 text-slate-200">Jenkins</span>
+            <span class="text-xs font-mono px-3 py-1.5 rounded-lg bg-dark-850 border border-dark-700 text-slate-200">Docker</span>
+            <span class="text-xs font-mono px-3 py-1.5 rounded-lg bg-dark-850 border border-dark-700 text-slate-200">Kubernetes</span>
+            <span class="text-xs font-mono px-3 py-1.5 rounded-lg bg-dark-850 border border-dark-700 text-slate-200">Postman & Jira</span>
+          </div>
+        </div>
+
+        <!-- Category 4 -->
+        <div class="github-card rounded-2xl p-6">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 text-xl">
+              <i class="ph-bold ph-lightning"></i>
+            </div>
+            <h3 class="font-bold text-white text-base">Core Concepts</h3>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="text-xs font-mono px-3 py-1.5 rounded-lg bg-dark-850 border border-dark-700 text-slate-200">RxJS Streams</span>
+            <span class="text-xs font-mono px-3 py-1.5 rounded-lg bg-dark-850 border border-dark-700 text-slate-200">Reactive Programming</span>
+            <span class="text-xs font-mono px-3 py-1.5 rounded-lg bg-dark-850 border border-dark-700 text-slate-200">RESTful APIs</span>
+            <span class="text-xs font-mono px-3 py-1.5 rounded-lg bg-dark-850 border border-dark-700 text-slate-200">PWA</span>
+            <span class="text-xs font-mono px-3 py-1.5 rounded-lg bg-dark-850 border border-dark-700 text-slate-200">Performance Optimization</span>
+            <span class="text-xs font-mono px-3 py-1.5 rounded-lg bg-dark-850 border border-dark-700 text-slate-200">Mentoring & Reviews</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Professional Experience Timeline -->
+    <section id="experience" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+      <div class="mb-8 border-b border-dark-700 pb-5">
+        <span class="text-xs font-mono text-sky-400 uppercase tracking-widest">Chronology</span>
+        <h2 class="text-3xl font-extrabold text-white mt-1">Professional Experience</h2>
+      </div>
+
+      <div class="relative pl-6 md:pl-10 border-l border-dark-700 space-y-10">
+
+        <!-- 1. Go Digit General Insurance -->
+        <div class="relative">
+          <div class="absolute -left-[31px] md:-left-[47px] top-1.5 w-4 h-4 rounded-full bg-emerald-400 border-4 border-dark-950 shadow-[0_0_10px_rgba(52,211,153,0.8)]"></div>
+          
+          <div class="github-card rounded-2xl p-6 sm:p-7">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-dark-700 pb-4 mb-4">
+              <div>
+                <span class="inline-block px-2.5 py-0.5 rounded text-xs font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 mb-1">Present Role</span>
+                <h3 class="text-xl font-bold text-white">Senior Software Developer</h3>
+                <p class="text-sm text-slate-300 font-medium">Go Digit General Insurance &bull; Bangalore</p>
+              </div>
+              <div class="text-xs font-mono text-slate-400 bg-dark-850 px-3 py-1.5 rounded-lg border border-dark-700 self-start sm:self-auto">
+                Jul 2026 &mdash; Present
+              </div>
+            </div>
+
+            <ul class="space-y-2 text-sm text-slate-300">
+              <li class="flex items-start gap-2.5">
+                <i class="ph-bold ph-caret-right text-sky-400 mt-1 flex-shrink-0"></i>
+                <span>Design and optimize Angular 17+ / 18 components for high-traffic insurance portals.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i class="ph-bold ph-caret-right text-sky-400 mt-1 flex-shrink-0"></i>
+                <span>Improve application performance with RxJS by streamlining event handling and reactive state management.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i class="ph-bold ph-caret-right text-sky-400 mt-1 flex-shrink-0"></i>
+                <span>Integrate RESTful APIs and implement reusable shared service layers for improved enterprise scalability.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i class="ph-bold ph-caret-right text-sky-400 mt-1 flex-shrink-0"></i>
+                <span>Mentor junior developers and enforce strict coding guidelines across pull requests.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i class="ph-bold ph-caret-right text-sky-400 mt-1 flex-shrink-0"></i>
+                <span>Leverage GitHub Copilot AI to streamline feature delivery and reduce boilerplate code.</span>
+              </li>
+            </ul>
+
+            <div class="flex flex-wrap gap-2 mt-5 pt-4 border-t border-dark-700">
+              <span class="text-xs font-mono px-2.5 py-1 rounded bg-dark-850 text-sky-400 border border-dark-700">Angular 17-18</span>
+              <span class="text-xs font-mono px-2.5 py-1 rounded bg-dark-850 text-sky-400 border border-dark-700">RxJS</span>
+              <span class="text-xs font-mono px-2.5 py-1 rounded bg-dark-850 text-sky-400 border border-dark-700">Angular Material</span>
+              <span class="text-xs font-mono px-2.5 py-1 rounded bg-dark-850 text-sky-400 border border-dark-700">TypeScript</span>
+              <span class="text-xs font-mono px-2.5 py-1 rounded bg-dark-850 text-sky-400 border border-dark-700">GitHub Copilot</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Quess Corp Limited -->
+        <div class="relative">
+          <div class="absolute -left-[31px] md:-left-[47px] top-1.5 w-4 h-4 rounded-full bg-sky-400 border-4 border-dark-950"></div>
+          
+          <div class="github-card rounded-2xl p-6 sm:p-7">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-dark-700 pb-4 mb-4">
+              <div>
+                <h3 class="text-xl font-bold text-white">Senior Software Developer</h3>
+                <p class="text-sm text-slate-300 font-medium">Quess Corp Limited &bull; Bangalore</p>
+              </div>
+              <div class="text-xs font-mono text-slate-400 bg-dark-850 px-3 py-1.5 rounded-lg border border-dark-700 self-start sm:self-auto">
+                Dec 2025 &mdash; Jul 2026
+              </div>
+            </div>
+
+            <ul class="space-y-2 text-sm text-slate-300">
+              <li class="flex items-start gap-2.5">
+                <i class="ph-bold ph-caret-right text-sky-400 mt-1 flex-shrink-0"></i>
+                <span>Designed and optimized Angular 17+ components for mission-critical insurance web applications.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i class="ph-bold ph-caret-right text-sky-400 mt-1 flex-shrink-0"></i>
+                <span>Led migration efforts for key modules to Angular 18, ensuring compatibility and long-term maintainability.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i class="ph-bold ph-caret-right text-sky-400 mt-1 flex-shrink-0"></i>
+                <span>Modernized multiple modules with updated UI/UX and optimized Angular Material performance.</span>
+              </li>
+            </ul>
+
+            <div class="flex flex-wrap gap-2 mt-5 pt-4 border-t border-dark-700">
+              <span class="text-xs font-mono px-2.5 py-1 rounded bg-dark-850 text-sky-400 border border-dark-700">Angular 14-18</span>
+              <span class="text-xs font-mono px-2.5 py-1 rounded bg-dark-850 text-sky-400 border border-dark-700">RxJS</span>
+              <span class="text-xs font-mono px-2.5 py-1 rounded bg-dark-850 text-sky-400 border border-dark-700">TypeScript</span>
+              <span class="text-xs font-mono px-2.5 py-1 rounded bg-dark-850 text-sky-400 border border-dark-700">VS Code</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Mirafra Technologies -->
+        <div class="relative">
+          <div class="absolute -left-[31px] md:-left-[47px] top-1.5 w-4 h-4 rounded-full bg-slate-500 border-4 border-dark-950"></div>
+          
+          <div class="github-card rounded-2xl p-6 sm:p-7">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-dark-700 pb-4 mb-4">
+              <div>
+                <h3 class="text-xl font-bold text-white">Senior Software Developer</h3>
+                <p class="text-sm text-slate-300 font-medium">Mirafra Technologies <span class="text-slate-400 font-normal">(Client: Digit Insurance)</span> &bull; Bangalore</p>
+              </div>
+              <div class="text-xs font-mono text-slate-400 bg-dark-850 px-3 py-1.5 rounded-lg border border-dark-700 self-start sm:self-auto">
+                Mar 2023 &mdash; Dec 2025
+              </div>
+            </div>
+
+            <ul class="space-y-2 text-sm text-slate-300">
+              <li class="flex items-start gap-2.5">
+                <i class="ph-bold ph-caret-right text-sky-400 mt-1 flex-shrink-0"></i>
+                <span>Engineered high-performance insurance web portals serving millions of quote & policy operations.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i class="ph-bold ph-caret-right text-sky-400 mt-1 flex-shrink-0"></i>
+                <span>Optimized asynchronous stream management via RxJS, reducing latency and unnecessary re-renders.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i class="ph-bold ph-caret-right text-sky-400 mt-1 flex-shrink-0"></i>
+                <span>Awarded multiple Tech-Titan honors for consistent high-quality delivery on complex enterprise modules.</span>
+              </li>
+            </ul>
+
+            <div class="flex flex-wrap gap-2 mt-5 pt-4 border-t border-dark-700">
+              <span class="text-xs font-mono px-2.5 py-1 rounded bg-dark-850 text-sky-400 border border-dark-700">Angular</span>
+              <span class="text-xs font-mono px-2.5 py-1 rounded bg-dark-850 text-sky-400 border border-dark-700">RxJS</span>
+              <span class="text-xs font-mono px-2.5 py-1 rounded bg-dark-850 text-sky-400 border border-dark-700">Angular Material</span>
+              <span class="text-xs font-mono px-2.5 py-1 rounded bg-dark-850 text-sky-400 border border-dark-700">TypeScript</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Cloud Collab Technologies -->
+        <div class="relative">
+          <div class="absolute -left-[31px] md:-left-[47px] top-1.5 w-4 h-4 rounded-full bg-slate-600 border-4 border-dark-950"></div>
+          
+          <div class="github-card rounded-2xl p-6 sm:p-7">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-dark-700 pb-4 mb-4">
+              <div>
+                <h3 class="text-xl font-bold text-white">Software Developer</h3>
+                <p class="text-sm text-slate-300 font-medium">Cloud Collab Technologies <span class="text-slate-400 font-normal">(Client: Quick Heal, Pune)</span> &bull; Bangalore</p>
+              </div>
+              <div class="text-xs font-mono text-slate-400 bg-dark-850 px-3 py-1.5 rounded-lg border border-dark-700 self-start sm:self-auto">
+                Jan 2020 &mdash; Feb 2023
+              </div>
+            </div>
+
+            <ul class="space-y-2 text-sm text-slate-300">
+              <li class="flex items-start gap-2.5">
+                <i class="ph-bold ph-caret-right text-sky-400 mt-1 flex-shrink-0"></i>
+                <span>Developed and maintained dynamic UI for <strong>Seqrite MSSP (Managed Security Service Portal)</strong>.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i class="ph-bold ph-caret-right text-sky-400 mt-1 flex-shrink-0"></i>
+                <span>Upgraded applications from Angular 9 to Angular 12, improving overall application speed and bundle size.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i class="ph-bold ph-caret-right text-sky-400 mt-1 flex-shrink-0"></i>
+                <span>Designed generic UI components including configurable data grids, cards, and analytics charts.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i class="ph-bold ph-caret-right text-sky-400 mt-1 flex-shrink-0"></i>
+                <span>Ensured security compliance by proactively mitigating WhiteSource dependency vulnerabilities.</span>
+              </li>
+            </ul>
+
+            <div class="flex flex-wrap gap-2 mt-5 pt-4 border-t border-dark-700">
+              <span class="text-xs font-mono px-2.5 py-1 rounded bg-dark-850 text-sky-400 border border-dark-700">Angular 4-12</span>
+              <span class="text-xs font-mono px-2.5 py-1 rounded bg-dark-850 text-sky-400 border border-dark-700">TypeScript</span>
+              <span class="text-xs font-mono px-2.5 py-1 rounded bg-dark-850 text-sky-400 border border-dark-700">RxJS</span>
+              <span class="text-xs font-mono px-2.5 py-1 rounded bg-dark-850 text-sky-400 border border-dark-700">Bootstrap</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Awards & Honors -->
+    <section id="awards" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+      <div class="mb-8 border-b border-dark-700 pb-5">
+        <span class="text-xs font-mono text-amber-400 uppercase tracking-widest">Recognition</span>
+        <h2 class="text-3xl font-extrabold text-white mt-1">Honors & Awards</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <div class="github-card rounded-2xl p-6 border-amber-500/40 relative">
+          <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-2xl mb-4 border border-amber-500/20">
+            <i class="ph-bold ph-crown"></i>
+          </div>
+          <span class="text-[11px] font-mono text-amber-400 uppercase font-semibold">Code Quality Evaluation</span>
+          <h3 class="text-lg font-bold text-white mt-1">Digit Master Mind Award</h3>
+          <p class="text-xs font-mono text-slate-400">Digit Insurance</p>
+          <p class="text-sm text-slate-300 mt-3 leading-relaxed">
+            Awarded for superior front-end architecture, strict adherence to clean code principles, and highest quality commit benchmark.
+          </p>
+        </div>
+
+        <div class="github-card rounded-2xl p-6 border-sky-500/40 relative">
+          <div class="w-12 h-12 rounded-xl bg-sky-500/10 text-sky-400 flex items-center justify-center text-2xl mb-4 border border-sky-500/20">
+            <i class="ph-bold ph-medal"></i>
+          </div>
+          <span class="text-[11px] font-mono text-sky-400 uppercase font-semibold">FY 2024 &mdash; 2025</span>
+          <h3 class="text-lg font-bold text-white mt-1">Tech-Titan Award</h3>
+          <p class="text-xs font-mono text-slate-400">Digit Insurance</p>
+          <p class="text-sm text-slate-300 mt-3 leading-relaxed">
+            Recognized for excellence in technical delivery, module modernization, and impactful feature innovations.
+          </p>
+        </div>
+
+        <div class="github-card rounded-2xl p-6 border-purple-500/40 relative">
+          <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-2xl mb-4 border border-purple-500/20">
+            <i class="ph-bold ph-trophy"></i>
+          </div>
+          <span class="text-[11px] font-mono text-purple-400 uppercase font-semibold">FY 2023 &mdash; 2024</span>
+          <h3 class="text-lg font-bold text-white mt-1">Tech-Titan Award</h3>
+          <p class="text-xs font-mono text-slate-400">Digit Insurance</p>
+          <p class="text-sm text-slate-300 mt-3 leading-relaxed">
+            Awarded for consistent high-quality execution and critical roadmap milestone achievements.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Education Box -->
+      <div class="github-card rounded-2xl p-6 mt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-xl bg-dark-850 border border-dark-700 flex items-center justify-center text-slate-300 text-2xl flex-shrink-0">
+            <i class="ph-bold ph-graduation-cap"></i>
+          </div>
+          <div>
+            <div class="text-xs font-mono text-sky-400">ACADEMICS</div>
+            <div class="text-base font-bold text-white">B.Tech in Information Technology & Computer Science Engineering</div>
+            <div class="text-sm text-slate-400">G. Pulla Reddy Engineering College (Autonomous), Kurnool, AP</div>
+          </div>
+        </div>
+        <div class="text-xs font-mono text-slate-400 bg-dark-850 px-4 py-2 rounded-xl border border-dark-700">
+          2012 &mdash; 2016
+        </div>
+      </div>
+    </section>
+
+    <!-- GitHub Pages / Live Link Deployment Guide -->
+    <section id="deploy" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+      <div class="github-card rounded-3xl p-7 sm:p-9 border-sky-500/30 bg-gradient-to-b from-dark-900 to-dark-950">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-6 border-b border-dark-700">
+          <div>
+            <span class="text-xs font-mono text-amber-400 uppercase tracking-widest font-bold">1-Minute Free Hosting</span>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-1">How to make this portfolio live as your GitHub Link</h2>
+          </div>
+          <div class="px-3.5 py-1.5 rounded-lg bg-sky-500/10 border border-sky-500/30 text-sky-400 text-xs font-mono">
+            https://&lt;username&gt;.github.io
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6">
+          <div class="bg-dark-850/70 p-5 rounded-2xl border border-dark-700">
+            <div class="w-8 h-8 rounded-lg bg-sky-500/20 text-sky-400 font-mono font-bold flex items-center justify-center text-sm mb-3">1</div>
+            <h4 class="font-bold text-white text-sm">Download or Copy this File</h4>
+            <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+              Save the code in this editor as a single file named <code class="text-sky-300 font-mono">index.html</code>.
+            </p>
+          </div>
+
+          <div class="bg-dark-850/70 p-5 rounded-2xl border border-dark-700">
+            <div class="w-8 h-8 rounded-lg bg-sky-500/20 text-sky-400 font-mono font-bold flex items-center justify-center text-sm mb-3">2</div>
+            <h4 class="font-bold text-white text-sm">Create a GitHub Repository</h4>
+            <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+              Go to GitHub &rarr; Create repository named <code class="text-sky-300 font-mono">portfolio</code> (or <code class="text-sky-300 font-mono">yourusername.github.io</code>) and upload <code class="text-sky-300 font-mono">index.html</code>.
+            </p>
+          </div>
+
+          <div class="bg-dark-850/70 p-5 rounded-2xl border border-dark-700">
+            <div class="w-8 h-8 rounded-lg bg-sky-500/20 text-sky-400 font-mono font-bold flex items-center justify-center text-sm mb-3">3</div>
+            <h4 class="font-bold text-white text-sm">Turn on GitHub Pages</h4>
+            <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+              In repository <strong>Settings &rarr; Pages</strong>, set Branch to <strong>main</strong> & click <strong>Save</strong>. You get a public live URL instantly!
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Drawer -->
+    <section id="contact" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-12">
+      <div class="github-card rounded-3xl p-8 sm:p-12 border-slate-700">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          <div class="lg:col-span-7 space-y-4">
+            <span class="text-xs font-mono text-sky-400 uppercase tracking-widest">Get In Touch</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Let's connect & build something impactful.</h2>
+            <p class="text-slate-400 text-sm sm:text-base leading-relaxed">
+              Open to senior front-end architectural roles, engineering leadership opportunities, and performance consulting.
+            </p>
+
+            <div class="flex flex-wrap gap-3 pt-3">
+              <a href="mailto:jeshwanthk.palle@gmail.com" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-sky-500 hover:bg-sky-400 text-dark-950 font-bold text-sm shadow-lg shadow-sky-500/20 transition-all">
+                <i class="ph-bold ph-envelope-open"></i>
+                <span>Send Direct Email</span>
+              </a>
+              <a href="https://linkedin.com/in/jeshwanth-palle-16ab57126/" target="_blank" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-dark-850 hover:bg-dark-800 text-white font-semibold text-sm border border-dark-700 transition-all">
+                <i class="ph-bold ph-linkedin-logo text-sky-400 text-base"></i>
+                <span>Open LinkedIn</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Contact Details Cards -->
+          <div class="lg:col-span-5 space-y-3">
+            <div class="bg-dark-850 border border-dark-700 rounded-xl p-4 flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-sky-500/10 text-sky-400 flex items-center justify-center">
+                  <i class="ph-bold ph-envelope text-lg"></i>
+                </div>
+                <div>
+                  <div class="text-[10px] text-slate-400 font-mono">PRIMARY EMAIL</div>
+                  <div class="text-sm font-semibold text-white">jeshwanthk.palle@gmail.com</div>
+                </div>
+              </div>
+              <button onclick="copyText('jeshwanthk.palle@gmail.com', 'Email copied!')" title="Copy email" class="p-2 rounded-lg bg-dark-800 hover:bg-dark-700 text-slate-400 hover:text-white transition-colors">
+                <i class="ph-bold ph-copy"></i>
+              </button>
+            </div>
+
+            <div class="bg-dark-850 border border-dark-700 rounded-xl p-4 flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center">
+                  <i class="ph-bold ph-phone text-lg"></i>
+                </div>
+                <div>
+                  <div class="text-[10px] text-slate-400 font-mono">PHONE & WHATSAPP</div>
+                  <div class="text-sm font-semibold text-white">+91 9700474242</div>
+                </div>
+              </div>
+              <button onclick="copyText('+919700474242', 'Phone copied!')" title="Copy phone" class="p-2 rounded-lg bg-dark-800 hover:bg-dark-700 text-slate-400 hover:text-white transition-colors">
+                <i class="ph-bold ph-copy"></i>
+              </button>
+            </div>
+
+            <div class="bg-dark-850 border border-dark-700 rounded-xl p-4 flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-purple-500/10 text-purple-400 flex items-center justify-center">
+                  <i class="ph-bold ph-map-pin text-lg"></i>
+                </div>
+                <div>
+                  <div class="text-[10px] text-slate-400 font-mono">LOCATION</div>
+                  <div class="text-sm font-semibold text-white">Bangalore, Karnataka, India</div>
+                </div>
+              </div>
+              <span class="text-xs font-mono text-slate-500">IST (UTC+5:30)</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-dark-700 bg-dark-950 py-6 text-xs text-slate-500 font-mono">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+      <div>
+        Portfolio of <span class="text-slate-300 font-medium">Jeshwanth Palle</span> &bull; Angular Specialist (v4-v18)
+      </div>
+      <div class="flex items-center gap-4 text-slate-400">
+        <a href="https://linkedin.com/in/jeshwanth-palle-16ab57126/" target="_blank" class="hover:text-sky-400">LinkedIn</a>
+        <span>&bull;</span>
+        <button onclick="copyText('jeshwanthk.palle@gmail.com', 'Email copied!')" class="hover:text-sky-400">Email</button>
+        <span>&bull;</span>
+        <button onclick="copyText('+919700474242', 'Phone copied!')" class="hover:text-sky-400">Call</button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Copy toast notification
+    function copyText(text, message) {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      try {
+        document.execCommand('copy');
+      } catch (e) {
+        console.error('Copy failed', e);
+      }
+      document.body.removeChild(textarea);
+
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-message');
+      toastMsg.textContent = message;
+      toast.classList.remove('translate-y-28', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-28', 'opacity-0');
+      }, 2800);
+    }
+
+    // Generate simulated commit matrix
+    window.addEventListener('DOMContentLoaded', () => {
+      const container = document.getElementById('miniHeatmap');
+      if (!container) return;
+      const shades = [
+        'bg-dark-800',
+        'bg-emerald-950',
+        'bg-emerald-800',
+        'bg-emerald-600',
+        'bg-emerald-400'
+      ];
+      for (let i = 0; i < 36; i++) {
+        const block = document.createElement('div');
+        const rand = Math.random();
+        let shade = shades[0];
+        if (rand > 0.8) shade = shades[4];
+        else if (rand > 0.6) shade = shades[3];
+        else if (rand > 0.35) shade = shades[2];
+        else if (rand > 0.15) shade = shades[1];
+        block.className = `w-full h-3 rounded-sm ${shade} transition-transform hover:scale-125`;
+        container.appendChild(block);
+      }
+    });
+  </script>
+</body>
+</html>
