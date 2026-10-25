@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jeshwanth Palle | Senior Front-End & Angular Architect</title>
+  <title>Jeshwanth Palle | Senior Front-End Developer & Angular Specialist</title>
   
   <!-- Fonts & Tailwind CSS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Phosphor Icons -->
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
@@ -68,7 +68,7 @@
       transform: translateY(-2px);
     }
     .glow-effect {
-      box-shadow: 0 0 40px -10px rgba(56, 189, 248, 0.15);
+      box-shadow: 0 0 35px -8px rgba(56, 189, 248, 0.2);
     }
   </style>
 </head>
@@ -88,10 +88,10 @@
           JP
         </div>
         <div class="flex flex-col">
-          <span class="font-mono text-sm font-semibold text-slate-100 group-hover:text-brand-accent transition-colors">
+          <span class="font-mono text-sm font-semibold text-slate-100 group-hover:text-sky-400 transition-colors">
             jeshwanth-palle
           </span>
-          <span class="text-[11px] font-mono text-slate-500">senior.frontend.dev</span>
+          <span class="text-[11px] font-mono text-slate-500">senior.frontend.developer</span>
         </div>
       </a>
 
@@ -104,7 +104,7 @@
         <a href="#education" class="hover:text-sky-400 transition-colors">Education</a>
       </nav>
 
-      <!-- Action Button -->
+      <!-- Action Buttons -->
       <div class="flex items-center gap-2.5">
         <button onclick="window.print()" class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-2 rounded-lg bg-dark-850 hover:bg-dark-800 text-slate-300 border border-dark-700 hover:border-slate-500 transition-all">
           <i class="ph-bold ph-printer text-base text-amber-400"></i>
@@ -133,21 +133,67 @@
         <div class="lg:col-span-8 space-y-6">
           <div class="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-xs font-mono">
             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            Senior Front-End Lead &bull; Available for Key Roles
+            Senior Front-End Specialist &bull; 7+ Years Experience
           </div>
 
-          <div>
-            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight">
-              Jeshwanth Palle
-            </h1>
-            <p class="mt-2 text-xl sm:text-2xl font-mono text-sky-400 flex items-center gap-2 flex-wrap">
-              <span>Senior Front-End / Angular Developer</span>
-              <span class="text-xs px-2.5 py-1 rounded-md bg-dark-850 text-slate-300 border border-dark-700 font-sans">7+ Years Exp</span>
-            </p>
+          <!-- Hero Identity Block with Interactive Photo Preview -->
+          <div class="flex flex-col-reverse sm:flex-row items-start sm:items-center justify-between gap-6">
+            <div>
+              <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight">
+                Jeshwanth Palle
+              </h1>
+              <p class="mt-2 text-xl sm:text-2xl font-mono text-sky-400 flex items-center gap-2 flex-wrap">
+                <span>Senior Front-End / Angular Developer</span>
+              </p>
+            </div>
+
+            <!-- Profile Photo Container -->
+            <div class="flex flex-col items-center gap-2 flex-shrink-0">
+              <div class="relative group">
+                <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-sky-500 via-indigo-500 to-emerald-400 opacity-70 blur group-hover:opacity-100 transition duration-300"></div>
+                <div class="relative w-32 h-36 rounded-2xl overflow-hidden bg-dark-900 border-2 border-dark-700 shadow-2xl flex items-center justify-center">
+                  
+                  <!-- Main Image (defaults to jesh.jpg, with sandbox fallback) -->
+                  <img 
+                    id="profileImg"
+                    src="jesh.jpg" 
+                    alt="Jeshwanth Palle" 
+                    class="w-full h-full object-cover object-top"
+                    onload="handlePhotoLoaded()"
+                    onerror="handlePhotoError()"
+                  />
+
+                  <!-- Fallback Illustrated Avatar (shown if local file not yet chosen in iframe) -->
+                  <div id="avatarFallback" class="hidden w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-slate-900 to-dark-850 p-2 text-center">
+                    <div class="w-16 h-16 rounded-full bg-sky-500/20 border border-sky-400/40 flex items-center justify-center text-sky-300 mb-1">
+                      <i class="ph-bold ph-user text-3xl"></i>
+                    </div>
+                    <span class="text-xs font-mono font-bold text-white">Jeshwanth</span>
+                    <span class="text-[10px] font-mono text-slate-400">Click below to preview</span>
+                  </div>
+
+                </div>
+              </div>
+
+              <!-- Interactive Photo Preview Switcher (For local sandbox testing) -->
+              <div class="flex flex-col items-center">
+                <label for="photoUploadInput" class="cursor-pointer inline-flex items-center gap-1.5 text-[11px] font-mono px-2.5 py-1 rounded-lg bg-dark-850 hover:bg-dark-800 text-sky-400 border border-dark-700 hover:border-sky-500/50 transition-all shadow-sm">
+                  <i class="ph-bold ph-camera"></i>
+                  <span>Preview jesh.jpg</span>
+                </label>
+                <input 
+                  type="file" 
+                  id="photoUploadInput" 
+                  accept="image/*" 
+                  class="hidden" 
+                  onchange="previewUploadedPhoto(event)"
+                />
+              </div>
+            </div>
           </div>
 
           <p class="text-slate-300 leading-relaxed text-base max-w-3xl">
-            Seasoned Front-End specialist with 7 years of deep engineering experience architecting scalable, enterprise web portals with <strong class="text-white font-semibold">Angular (v4 - v18)</strong>, <strong class="text-white font-semibold">TypeScript</strong>, and <strong class="text-white font-semibold">RxJS</strong>. Experienced in debugging downstream <strong class="text-white font-semibold">Java microservices</strong>, tuning service configurations and caches, and leading comprehensive <strong class="text-white font-semibold">Pull Request (PR) evaluations</strong> to ensure production-grade code quality.
+            Front-End Developer with <strong class="text-white font-semibold">7 years of enterprise experience</strong> designing and building scalable, high-performance web applications using <strong class="text-white font-semibold">Angular (v4–v18)</strong>, <strong class="text-white font-semibold">TypeScript</strong>, and <strong class="text-white font-semibold">RxJS</strong>. Strong secondary background debugging downstream <strong class="text-white font-semibold">Java microservices</strong>, tuning service configurations and caches, and conducting comprehensive <strong class="text-white font-semibold">Pull Request (PR) evaluations</strong>.
           </p>
 
           <div class="flex flex-wrap items-center gap-3 pt-2">
@@ -158,14 +204,14 @@
               <i class="ph-bold ph-shield-check text-emerald-400"></i> Digit Insurance & Seqrite
             </span>
             <span class="inline-flex items-center gap-1.5 text-xs font-mono px-3 py-1.5 rounded-lg bg-dark-900 border border-dark-700 text-slate-300">
-              <i class="ph-bold ph-code text-amber-400"></i> Java Debugging & Cache Mgmt
+              <i class="ph-bold ph-code text-amber-400"></i> Java Debugging & Cache Tuning
             </span>
             <span class="inline-flex items-center gap-1.5 text-xs font-mono px-3 py-1.5 rounded-lg bg-dark-900 border border-dark-700 text-slate-300">
               <i class="ph-bold ph-git-pull-request text-purple-400"></i> PR Code Reviews
             </span>
           </div>
 
-          <!-- Quick Action Buttons -->
+          <!-- Hero Action Buttons -->
           <div class="flex flex-wrap items-center gap-3 pt-4">
             <button onclick="window.print()" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:brightness-110 text-white font-bold text-sm transition-all shadow-lg shadow-emerald-500/20">
               <i class="ph-bold ph-file-pdf"></i>
@@ -186,11 +232,11 @@
           </div>
         </div>
 
-        <!-- Right: Metrics & Status -->
+        <!-- Right: Metrics Card -->
         <div class="lg:col-span-4 space-y-4">
           <div class="github-card rounded-2xl p-6 glow-effect">
             <div class="flex items-center justify-between pb-3 border-b border-dark-700">
-              <span class="text-xs font-mono text-slate-400">ENGINEER METRICS</span>
+              <span class="text-xs font-mono text-slate-400">ENGINEERING STATS</span>
               <span class="flex h-2.5 w-2.5 relative">
                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
@@ -228,10 +274,10 @@
             </div>
           </div>
 
-          <!-- Activity Heatmap Mockup -->
+          <!-- Activity Heatmap -->
           <div class="github-card rounded-2xl p-4 border border-dark-700">
             <div class="flex items-center justify-between text-xs text-slate-400 font-mono mb-2.5">
-              <span>DEVELOPER COMMITS</span>
+              <span>CONTRIBUTION MATRIX</span>
               <span class="text-emerald-400">Active</span>
             </div>
             <div class="grid grid-cols-12 gap-1.5" id="miniHeatmap"></div>
@@ -249,7 +295,7 @@
           <h2 class="text-3xl font-extrabold text-white mt-1">Technical Stack</h2>
         </div>
         <p class="text-sm text-slate-400 max-w-md">
-          Robust front-end architecture supported by rigorous code reviews, reactive asynchronous programming, and cross-tier Java microservice debugging.
+          Specialized in enterprise Angular architectures backed by RxJS state management, cross-tier Java debugging, and strict PR audits.
         </p>
       </div>
 
@@ -680,6 +726,43 @@
 
   <!-- Scripts -->
   <script>
+    // Handle photo load success/fail states
+    function handlePhotoLoaded() {
+      const img = document.getElementById('profileImg');
+      const fallback = document.getElementById('avatarFallback');
+      if (img && fallback) {
+        img.classList.remove('hidden');
+        fallback.classList.add('hidden');
+      }
+    }
+
+    function handlePhotoError() {
+      const img = document.getElementById('profileImg');
+      const fallback = document.getElementById('avatarFallback');
+      if (img && fallback) {
+        img.classList.add('hidden');
+        fallback.classList.remove('hidden');
+      }
+    }
+
+    // Client-side local file previewer (bridges sandbox environment limitations)
+    function previewUploadedPhoto(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const img = document.getElementById('profileImg');
+        const fallback = document.getElementById('avatarFallback');
+        if (img) {
+          img.src = e.target.result;
+          img.classList.remove('hidden');
+          if (fallback) fallback.classList.add('hidden');
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+
     // Copy toast notification
     function copyText(text, message) {
       const textarea = document.createElement('textarea');
